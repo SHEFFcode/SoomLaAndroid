@@ -32,8 +32,8 @@ bool ExampleAssets::init() {
     CCVirtualGood *noAds = CCLifetimeVG::create(
     CCString::create("NoAds"),// name
     CCString::create("Removes Ads"), // description
-    CCString::create("noads_item_id2"),// item id
-    CCPurchaseWithMarket::createWithMarketItem(CCMarketItem::create(CCString::create("noads_item_id2"),
+    CCString::create("android.test.purchased"),// item id
+    CCPurchaseWithMarket::createWithMarketItem(CCMarketItem::create(CCString::create("android.test.purchased"),
     CCInteger::create(CCMarketItem::NONCONSUMABLE),
     CCDouble::create(0.00))) // the way this virtual good is purchased
     );

@@ -43,6 +43,7 @@ bool HelloWorld::init()
                                            "CloseNormal.png",
                                            "CloseSelected.png",
                                            CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+    closeItem->setScale(4);
     
 	closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
                                 origin.y + closeItem->getContentSize().height/2));
@@ -88,7 +89,7 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 #endif
 
     soomla::CCError *soomlaError = NULL;
-        soomla::CCStoreInventory::sharedStoreInventory()->buyItem("noads_item_id2", &soomlaError);
+        soomla::CCStoreInventory::sharedStoreInventory()->buyItem("android.test.purchased", &soomlaError);
         if (soomlaError) {
             soomla::CCSoomlaUtils::logException("StoreScreen::Onclicked", soomlaError);
         }
