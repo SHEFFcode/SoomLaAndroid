@@ -1,4 +1,8 @@
 #include "HelloWorldScene.h"
+#include "CCError.h"
+#include "CCStoreInventory.h"
+#include "CCStoreService.h"
+#include "CCSoomlaUtils.h"
 
 USING_NS_CC;
 
@@ -83,7 +87,12 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     return;
 #endif
 
-    Director::getInstance()->end();
+    soomla::CCError *soomlaError = NULL;
+        soomla::CCStoreInventory::sharedStoreInventory()->buyItem("noads_item_id2", &soomlaError);
+        if (soomlaError) {
+            soomla::CCSoomlaUtils::logException("StoreScreen::Onclicked", soomlaError);
+        }
+
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);

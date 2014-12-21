@@ -25,6 +25,9 @@ package org.cocos2dx.lib;
 
 import org.cocos2dx.lib.Cocos2dxHelper.Cocos2dxHelperListener;
 
+import com.soomla.cocos2dx.common.ServiceManager;
+import com.soomla.cocos2dx.store.StoreService;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -123,6 +126,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
 	protected void onResume() {
 		super.onResume();
 
+		ServiceManager.getInstance().onResume(); 
 		Cocos2dxHelper.onResume();
 		this.mGLSurfaceView.onResume();
 	}
@@ -131,6 +135,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
 	protected void onPause() {
 		super.onPause();
 		
+		ServiceManager.getInstance().onPause(); 
 		Cocos2dxHelper.onPause();
 		this.mGLSurfaceView.onPause();
 	}
@@ -217,6 +222,12 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
 
     	glSurfaceView.setEGLConfigChooser(this.glContextAttrs[0], this.glContextAttrs[1],this.glContextAttrs[2],
     		this.glContextAttrs[3],this.glContextAttrs[4],this.glContextAttrs[5]);
+    	
+    	// initialize services
+        final ServiceManager serviceManager = ServiceManager.getInstance();
+        serviceManager.setActivity(this);
+        serviceManager.setGlSurfaceView(glSurfaceView);
+        serviceManager.registerService(StoreService.getInstance());
 
     	return glSurfaceView;
     }

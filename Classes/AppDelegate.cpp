@@ -1,5 +1,9 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
+#include "ExampleAssets.h"
+#include "CCServiceManager.h"
+#include "CCStoreService.h"
+#include "Cocos2dxStore.h"
 
 USING_NS_CC;
 
@@ -23,6 +27,17 @@ void AppDelegate::initGLContextAttrs()
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
+    
+    ExampleAssets *assets = ExampleAssets::create();
+    
+    __Dictionary *commonParams = __Dictionary::create();
+    commonParams->setObject(__String::create("d78ae6877ccc4e2d964bfa1a5607449c"), "customSecret");
+    soomla::CCServiceManager::getInstance()->setCommonParams(commonParams);
+    __Dictionary *storeParams = __Dictionary::create();
+    storeParams->setObject(__String::create("ExamplePublicKey"), "androidPublicKey");
+
+    soomla::CCStoreService::initShared(assets, storeParams);
+    
     // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();

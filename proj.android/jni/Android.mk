@@ -12,12 +12,17 @@ LOCAL_MODULE_FILENAME := libcocos2dcpp
 
 LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
-                   ../../Classes/HelloWorldScene.cpp
+                   ../../Classes/HelloWorldScene.cpp \
+                   ../../Classes/ExampleAssets.cpp \
+                   
+                   
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 
 LOCAL_STATIC_LIBRARIES := cocos2dx_static
+LOCAL_WHOLE_STATIC_LIBRARIES += cocos2dx_store_static
 
 include $(BUILD_SHARED_LIBRARY)
 
 $(call import-module,.)
+$(call import-module, extensions/cocos2dx-store)
